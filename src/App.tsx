@@ -1,24 +1,13 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
+import Card from './components/Card/Card';
 
 function App() {
   return (
+     //Centered in the screen
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+       <Card name={"Rick Sanchez"} status={"Vivo"} image={ "https://rickandmortyapi.com/api/character/avatar/1.jpeg" } />
     </div>
   );
 }
