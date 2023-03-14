@@ -4,6 +4,8 @@ interface rickAndMortyCharacter {
     name: string;
     status: string;
     image: string;
+    id: number;
+
 }
 
 function Card(props: rickAndMortyCharacter) {
