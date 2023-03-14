@@ -1,9 +1,8 @@
 import React from 'react';
 import Card from './components/Card/Card';
-import { ApolloClient, InMemoryCache, ApolloProvider, gql } from '@apollo/client';
+import {ApolloProvider} from '@apollo/client';
 import {onError} from "@apollo/client/link/error";
 import {client} from "./graphql/apolloClient";
-import Cardholder from "./components/Cardholder/Cardholder";
 
 const errorLink = onError(({graphQLErrors, networkError}) => {
     if (graphQLErrors)
