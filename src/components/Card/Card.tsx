@@ -9,13 +9,24 @@ interface rickAndMortyCharacter {
 }
 
 function Card(props: rickAndMortyCharacter) {
+    let characterStatus: JSX.Element;
+    if (props.status === "Alive"){
+     characterStatus =  <p className={"alive"}>Vivo</p>
+    }
+    else if (props.status === "Dead"){
+        characterStatus =  <p className={"dead"}>Morto</p>
+    }
+    else {
+        characterStatus =  <p className={"unknown"}>Desconhecido</p>
+    }
     return (
         <Container>
             <img src={props.image} alt={props.name} />
-
+            <div className={"infoGroup"}>
             <h2>{props.name}</h2>
-            <p>{props.status}</p>
+            {characterStatus}
 
+            </div>
         </Container>
     );
 }

@@ -1,6 +1,4 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
 import Card from './components/Card/Card';
 import { ApolloClient, InMemoryCache, ApolloProvider, gql } from '@apollo/client';
 import {onError} from "@apollo/client/link/error";
@@ -19,7 +17,9 @@ function App() {
   return (
     <ApolloProvider client={client}>
         <div className="App">
-            <Cardholder></Cardholder>
+            <Card name={"Rick Sanchez"} status={"Unknow"} image={"https://rickandmortyapi.com/api/character/avatar/1.jpeg"} id={1}></Card>
+            <Card name={"Morty Smith"} status={"Dead"} image={"https://rickandmortyapi.com/api/character/avatar/2.jpeg"} id={2}></Card>
+            <Card name={"Summer Smith"} status={"Alive"} image={"https://rickandmortyapi.com/api/character/avatar/3.jpeg"} id={3}></Card>
         </div>
     </ApolloProvider>
   );
