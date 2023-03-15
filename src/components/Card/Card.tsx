@@ -4,7 +4,7 @@ interface rickAndMortyCharacter {
     name: string;
     status: string;
     image: string;
-    id: number;
+    id: string;
 
 }
 

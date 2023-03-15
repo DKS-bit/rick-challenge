@@ -7,18 +7,20 @@ export const Container = styled.div`
     flex-direction: column;
     align-items: flex-start;
     justify-content: center;
-    width: 200px;
-    height: 323px;
+    width: 230px;
+    height: 300px;
     background-color: #3C3E44;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
     margin: 10px;
     color:#F5F5F5;
+    transition: ease-out all 0.15s;
     img {
         width: 100%;
         height: 100%;
         border-radius: 10px 10px 0 0;
-
+        //clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
+      
       
     }
     .infoGroup{
@@ -30,6 +32,8 @@ export const Container = styled.div`
         padding-left: 10px;
         align-self: flex-start;
         height: 28%;
+
+      
         h2{
           margin: 0;
         }
@@ -39,8 +43,7 @@ export const Container = styled.div`
     }
   &:hover{
     cursor: pointer;
-    transform: scale(1.1);
-    transition: 0.5s;
+    transform: scale(1.04);
   }
     .alive{
         color: #00FF00;
