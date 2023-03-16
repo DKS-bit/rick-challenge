@@ -71,7 +71,6 @@ export async function getAllCharacters(): Promise<Character[]> {
             variables: { page },
         });
         promises.push(promise);
-        console.log(`Fetching page ${page} of ${totalPages}`);
     }
 
     const pages = await Promise.all(promises);
