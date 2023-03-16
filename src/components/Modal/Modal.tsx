@@ -1,6 +1,6 @@
 import React, { FunctionComponent, useEffect, useState } from 'react';
 import ReactDOM from 'react-dom';
-import { Backdrop, CloseButton, Content, Header, HeaderText, StyledModal, Wrapper } from './Modal.styled';
+import { Backdrop, CloseButton, Content, Header, HeaderText, StyledModal, Wrapper, List, WrapperList, LeftSide } from './Modal.styled';
 import { getEpisodesByCharacterId } from '../../graphql/apolloQueryEpisodes';
 export interface ModalProps {
     isShown: boolean;
@@ -13,8 +13,7 @@ export interface ModalProps {
 interface Episode {
     id: string;
     name: string;
-    air_date: string;
-    episode: string;
+
 }
 
 
@@ -50,20 +49,23 @@ export const Modal: FunctionComponent<ModalProps> = ({
                 {/*Stop propagation para garantir que so cliques fora ou no x do modal fechem */}
                 <StyledModal onClick={(event) => event.stopPropagation()}>
                     <Header>
-                        <HeaderText>Lista de episodios</HeaderText>
+                        <HeaderText>Detalhes do Personagem</HeaderText>
                         <CloseButton onClick={hide}>X</CloseButton>
                     </Header>
                     <Content>
-                        <img src={characterImage}/>
-                        <p>{characterName}</p>
-                        <ul>
-                            {episodes.map((episode) => {
-                                return <li key={episode.id}>{episode.name}
-                                    <p>{episode.air_date}</p>
-                                    <p>{episode.episode}</p>
-                                </li>
-                            })}
-                        </ul>
+                        <LeftSide>
+                            <img src={characterImage} alt={characterName}/>
+                            <h2>{characterName}</h2>
+                        </LeftSide>
+
+                        <WrapperList>
+                            <h2>Episódios</h2>
+                                <List>
+                                {episodes.map((episode) => {
+                                    return <li key={episode.id}>{episode.name}</li>
+                                })}
+                                </List>
+                        </WrapperList>
                     </Content>
                 </StyledModal>
             </Wrapper>

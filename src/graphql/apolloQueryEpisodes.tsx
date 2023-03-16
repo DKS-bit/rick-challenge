@@ -3,8 +3,7 @@ import { ApolloClient, InMemoryCache, gql } from '@apollo/client';
 interface Episode {
     id: string;
     name: string;
-    air_date: string;
-    episode: string;
+
 }
 
 interface Character {
@@ -28,8 +27,7 @@ export async function getEpisodesByCharacterId(id: string): Promise<Episode[]> {
         character(id: $id) {
           episode {
             name
-            air_date
-            episode
+
           }
         }
       }
