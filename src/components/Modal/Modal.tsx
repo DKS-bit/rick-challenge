@@ -1,6 +1,6 @@
 import React, { FunctionComponent, useEffect, useState } from 'react';
 import ReactDOM from 'react-dom';
-import { Backdrop, CloseButton, Content, Header, HeaderText, StyledModal, Wrapper, List, WrapperList, LeftSide } from './Modal.styled';
+import { Backdrop, CloseButton, Content, Header, HeaderText, StyledModal, Wrapper, List, WrapperList, Upper, CharacterName } from './Modal.styled';
 import { getEpisodesByCharacterId } from '../../graphql/apolloQueryEpisodes';
 export interface ModalProps {
     isShown: boolean;
@@ -53,13 +53,22 @@ export const Modal: FunctionComponent<ModalProps> = ({
                         <CloseButton onClick={hide}>X</CloseButton>
                     </Header>
                     <Content>
-                        <LeftSide>
+                        <Upper>
+                            <CharacterName>
+                                <div>
+                                    <h4>Personagem</h4>
+                                    <h2>{characterName}</h2>
+                                </div>
+                                <div>
+                                    <h4>Lista de </h4>
+                                    <h2>Episodios</h2>
+                                </div>
+                            </CharacterName>
                             <img src={characterImage} alt={characterName}/>
-                            <h2>{characterName}</h2>
-                        </LeftSide>
+
+                        </Upper>
 
                         <WrapperList>
-                            <h2>Episódios</h2>
                                 <List>
                                 {episodes.map((episode) => {
                                     return <li key={episode.id}>{episode.name}</li>
