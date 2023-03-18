@@ -21,8 +21,10 @@ export async function getEpisodesByCharacterId(id: string): Promise<Episode[]> {
         cache: new InMemoryCache(),
     });
 
-    const { data } = await client.query<CharacterData>({
-        query: gql`
+    try {
+
+        const {data} = await client.query<CharacterData>({
+            query: gql`
       query GetEpisodesByCharacterId($id: ID!) {
         character(id: $id) {
           episode {
@@ -32,10 +34,15 @@ export async function getEpisodesByCharacterId(id: string): Promise<Episode[]> {
         }
       }
     `,
-        variables: { id },
-    });
+            variables: {id},
+        });
 
-    const episodes = data.character.episode;
+        const episodes = data.character.episode;
 
-    return episodes;
+        return episodes;
+    } catch (error) {
+        console.log(error)
+        return [];
+
+    }
 }

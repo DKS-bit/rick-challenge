@@ -27,8 +27,11 @@ export async function getAllCharacters(): Promise<Character[]> {
         cache: new InMemoryCache(),
     });
     //Pega a primeira pagina e o total de paginas para usar depois
-    const { data } = await client.query<CharactersData>({
-        query: gql`
+    try {
+
+
+        const {data} = await client.query<CharactersData>({
+            query: gql`
       query GetAllCharacters($page: Int!) {
         characters(page: $page) {
           info {
@@ -46,17 +49,17 @@ export async function getAllCharacters(): Promise<Character[]> {
         }
       }
     `,
-        variables: { page: 1 },
-    });
+            variables: {page: 1},
+        });
 
-    const { info, results } = data.characters;
-    const totalPages = info.pages;
+        const {info, results} = data.characters;
+        const totalPages = info.pages;
 
-    // Pega todas as paginas restantes
-    const promises = [];
-    for (let page = 2; page <= totalPages; page++) {
-        const promise = client.query<CharactersData>({
-            query: gql`
+        // Pega todas as paginas restantes
+        const promises = [];
+        for (let page = 2; page <= totalPages; page++) {
+            const promise = client.query<CharactersData>({
+                query: gql`
         query GetAllCharacters($page: Int!) {
           characters(page: $page) {
             results {
@@ -68,13 +71,17 @@ export async function getAllCharacters(): Promise<Character[]> {
           }
         }
       `,
-            variables: { page },
-        });
-        promises.push(promise);
+                variables: {page},
+            });
+            promises.push(promise);
+        }
+
+        const pages = await Promise.all(promises);
+        const allCharacters = results.concat(pages.flatMap(page => page.data.characters.results));
+
+        return allCharacters;
+    } catch (error) {
+        console.log(error)
+        return [];
     }
-
-    const pages = await Promise.all(promises);
-    const allCharacters = results.concat(pages.flatMap(page => page.data.characters.results));
-
-    return allCharacters;
 }
