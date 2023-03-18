@@ -13,7 +13,6 @@ interface rickAndMortyCharacter {
 
 
 function Card(props: rickAndMortyCharacter) {
-
     const { isShown, toggle } = useModal();
     let characterStatus: JSX.Element;
     if (props.status === "Alive"){
@@ -37,4 +36,4 @@ function Card(props: rickAndMortyCharacter) {
     );
 }
 
-export default Card;
+export default Card;    

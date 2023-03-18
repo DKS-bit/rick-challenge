@@ -29,6 +29,11 @@ export const StyledModal = styled.div`
   color: white;
   width: 35rem;
 
+  @media (max-width: 768px) {
+    width: 20rem;
+  }
+
+
 
 `;
 
@@ -67,6 +72,9 @@ export const HeaderText = styled.div`
   color: white;
   background-color: transparent;
   font-weight: bold;
+  @media (max-width: 768px) {
+    font-size: 0.9rem;
+  }
 `;
 
 export const CloseButton = styled.button`
@@ -92,11 +100,15 @@ export const Content = styled.div`
   margin-top: 0;
   flex-direction: column;
 
-
-
   img {
     width: 30%;
     border-radius: 50%;
+  }
+  @media (max-width: 768px) {
+    img {
+      border-radius: 50%;
+      align-self: flex-start;
+    }
   }
 `;
 export const Upper = styled.div`
@@ -137,5 +149,14 @@ export const CharacterName = styled.div`
         margin-top: 0;
       }
     }
-    
+  @media (max-width: 768px) {
+    h4 {
+      font-size: 1rem;
+
+    }
+
+    h2 {
+      font-size: 1.5rem;
+    }
+  }
     `

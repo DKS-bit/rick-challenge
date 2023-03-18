@@ -2,14 +2,20 @@ import { createGlobalStyle } from 'styled-components';
 
 export const GlobalStyle = createGlobalStyle`
   body {
-    background-color: #272B33;
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding:0;
+    }
 
+    background-color: #272B33;
+    margin: 0;
+    padding: 0;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Poppins', sans-serif;
   }
   /* Firefox */
   * {

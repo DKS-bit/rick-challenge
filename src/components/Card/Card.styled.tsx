@@ -1,8 +1,7 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
-  @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
-    font-family: 'Roboto', sans-serif;
+    
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -15,11 +14,12 @@ export const Container = styled.div`
     margin: 10px;
     color:#F5F5F5;
     transition: ease-out all 0.15s;
+  
     img {
         width: 100%;
         height: 100%;
         border-radius: 10px 10px 0 0;
-        //clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
+        
       
       
     }
@@ -33,9 +33,15 @@ export const Container = styled.div`
         align-self: flex-start;
         height: 28%;
 
+
+      
+      
       
         h2{
           margin: 0;
+          overflow: hidden;
+          max-height: 2rem;
+          font-size: 1.2rem;
         }
         p{
             margin: 0;
@@ -46,13 +52,50 @@ export const Container = styled.div`
     transform: scale(1.04);
   }
     .alive{
-        color: #00FF00;
+        color: #4FB243;
       
     }
     .dead{
-        color: #FF0000;
+        color: #FF5151;
     }
     .unknown{
         color: #FFA500;
+    }
+  
+    @media (max-width: 768px) {
+      &:hover{
+        transform: none;
+      }
+      width: 100%;
+      height: 8rem;
+      margin: 0;  
+      border-radius: 0;
+      box-shadow: none;
+      flex-direction: row;
+      justify-content: flex-start;
+      gap: 1.5rem;
+      align-items: center;
+      padding:0 1rem;
+        img{
+          padding: 0rem;
+          width: 5.5rem; 
+          height: auto;
+          border-radius: 10px
+          
+        }
+        .infoGroup{
+          line-height: 1.2rem;
+          align-self: flex-start;
+          padding-top: 1rem;
+
+          height: auto; 
+          padding-left: 0;
+            h2{
+                max-height: fit-content;
+                font-size: 1rem;
+            }
+
+        }
+          
     }
     `
