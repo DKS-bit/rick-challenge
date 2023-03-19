@@ -1,7 +1,8 @@
 import React, { FunctionComponent, useEffect, useState } from 'react';
 import ReactDOM from 'react-dom';
 import { Backdrop, CloseButton, Content, Header, HeaderText, StyledModal, Wrapper, List, WrapperList, Upper, CharacterName } from './Modal.styled';
-import { getEpisodesByCharacterId } from '../../graphql/apolloQueryEpisodes';
+import { loadCharacterEpisodes } from '../../graphql/queries';
+import {useQuery} from "@apollo/client";
 export interface ModalProps {
     isShown: boolean;
     hide: () => void;
@@ -13,8 +14,15 @@ export interface ModalProps {
 interface Episode {
     id: string;
     name: string;
-
 }
+interface dataResponse {
+    character: {
+        episode: Episode[];
+
+
+    }
+}
+
 
 
 export const Modal: FunctionComponent<ModalProps> = ({
@@ -28,6 +36,12 @@ export const Modal: FunctionComponent<ModalProps> = ({
                                                      }) => {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [episodes, setEpisodes] = useState<Episode[]>([]);
+    const { data, error } = useQuery<dataResponse>(loadCharacterEpisodes, {
+        variables: {
+            id: characterId
+        }
+    });
+
     //Foi feito isso para que o modal so faca as requisicoes quando o episodio for aberto
     useEffect(() => {
         setIsModalOpen(isShown);
@@ -35,9 +49,9 @@ export const Modal: FunctionComponent<ModalProps> = ({
 
     useEffect(() => {
         if (isModalOpen) {
-            getEpisodesByCharacterId(characterId).then((episodes) => {
-                setEpisodes(episodes);
-            });
+            if (data) {
+                setEpisodes(data.character.episode);
+            }
         }
     }, [isModalOpen]);
     const modal = (
@@ -80,6 +94,6 @@ export const Modal: FunctionComponent<ModalProps> = ({
             </Wrapper>
         </React.Fragment>
     );
-
+    if (error) return <p>Error :(</p>;
     return isShown ? ReactDOM.createPortal(modal, document.body) : null;
 };
