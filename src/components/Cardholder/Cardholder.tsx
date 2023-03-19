@@ -27,10 +27,10 @@ export default function Cardholder() {
     const {error, data} = useQuery<rickAndMortyData>(loadChars, {
         variables: {
             page: page
-
         }
     });
 
+    //The following useEffects load every character from the API while rendering them as they are loaded
     useEffect(() => {
         if (data) {
             setCharacters(characters.concat(data.characters.results));
@@ -45,8 +45,6 @@ export default function Cardholder() {
     }, [characters]);
 
     if (error) return <p>Error :(</p>;
-
-
 
     return (
         <Container>

@@ -11,10 +11,10 @@ interface rickAndMortyCharacter {
 
 }
 
-
 function Card(props: rickAndMortyCharacter) {
     const { isShown, toggle } = useModal();
     let characterStatus: JSX.Element;
+
     if (props.status === "Alive"){
      characterStatus =  <p className={"alive"}>Vivo</p>
     }

@@ -5,8 +5,9 @@ import Banner from "./components/Banner/Banner";
 import {ApolloClient, InMemoryCache, ApolloProvider, HttpLink, from} from "@apollo/client";
 import {onError} from "@apollo/client/link/error";
 
-const errorLink = onError(({ graphQLErrors, networkError }) => {
 
+const errorLink = onError(({ graphQLErrors, networkError }) => {
+// Log any GraphQL errors or network error that occurred
     if (graphQLErrors)
 
         graphQLErrors.forEach(({ message, locations, path }) =>

@@ -9,7 +9,6 @@ export interface ModalProps {
     characterName: string;
     characterImage: string;
     characterId: string;
-
 }
 interface Episode {
     id: string;
@@ -18,21 +17,14 @@ interface Episode {
 interface dataResponse {
     character: {
         episode: Episode[];
-
-
     }
 }
-
-
-
 export const Modal: FunctionComponent<ModalProps> = ({
                                                          isShown,
                                                          hide,
                                                          characterName,
                                                          characterImage,
                                                          characterId,
-
-
                                                      }) => {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [episodes, setEpisodes] = useState<Episode[]>([]);
@@ -42,7 +34,7 @@ export const Modal: FunctionComponent<ModalProps> = ({
         }
     });
 
-    //Foi feito isso para que o modal so faca as requisicoes quando o episodio for aberto
+    //Makes sure that modal only makes requests when it is open
     useEffect(() => {
         setIsModalOpen(isShown);
     }, [isShown]);
@@ -54,13 +46,12 @@ export const Modal: FunctionComponent<ModalProps> = ({
             }
         }
     }, [isModalOpen]);
+
     const modal = (
-
-
         <React.Fragment>
             <Backdrop onClick={hide} />
             <Wrapper>
-                {/*Stop propagation para garantir que so cliques fora ou no x do modal fechem */}
+                {/*Stop propagation to make sure that only clicking outside the modal closes it*/}
                 <StyledModal onClick={(event) => event.stopPropagation()}>
                     <Header>
                         <HeaderText>Detalhes do Personagem</HeaderText>
@@ -85,7 +76,7 @@ export const Modal: FunctionComponent<ModalProps> = ({
                         <WrapperList>
                                 <List>
                                 {episodes.map((episode) => {
-                                    return <li key={episode.id}>{episode.name}</li>
+                                    return <li key={episode.name}>{episode.name}</li>;
                                 })}
                                 </List>
                         </WrapperList>
